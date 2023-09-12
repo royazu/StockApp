@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query Results</title>
+</head>
+<body style="text-align:center;align-items: center">
+<h1>Query Results</h1>
+
+<br>
+
+<h2> Query 1:</h2>
+
+<table border="1" width="40%" style="margin-right: auto;margin-left: auto">
+    <th>Name</th>
+    <th>Total Sum</th>
+    {% for content in sql_res1 %}
+        <tr>
+            <td>{{ content.Name }}</td>
+            <td>{{ content.TotalSum }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<h2> Query 2:</h2>
+<table border="1" width="40%" style="margin-right: auto;margin-left: auto">
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    {% for content in sql_res2 %}
+        <tr>
+            <td>{{ content.Symbol }}</td>
+            <td>{{ content.Name }}</td>
+            <td>{{ content.Quantity }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<h2> Query 3:</h2>
+<table border="1" width="40%" style="margin-right: auto;margin-left: auto">
+    <th>Date</th>
+    <th>Symbol</th>
+    <th>Name</th>
+    {% for content in sql_res3 %}
+        <tr>
+            <td>{{ content.tDate }}</td>
+            <td>{{ content.Symbol }}</td>
+            <td>{{ content.Name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<div>
+    <a href="">Home</a>
+    <a href="result.html">Result</a>
+    <a href="insert.html">Add Transactions</a>
+    <a href="buy.html">Buy Stock</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert Transaction</title>
+    </head>
+    <body style="text-align:center">
+        <h1 style="color:deeppink">Insert Transaction!</h1>
+        <div style="text-align: right;display:inline-block">
+            <form method="post" action="insert.html">
+                {% csrf_token %}
+                ID:<input type="number" name="id" required><br>
+                Sum:<input type="number" name="sum" required><br>
+                <input type="submit">
+                </span>
+            </form>
+        </div>
+        <br>
+        {% if id_error %}
+            <p>Investor ID not found!:</p>
+        {% endif %}
+        <br>
+        <h2>Last 10 Transactions:</h2>
+        <table border="1" width="40%" style="margin-right: auto;margin-left: auto">
+            <th>Date</th>
+            <th>Investor ID</th>
+            <th>Transaction Sum</th>
+            {% for content in sql_res %}
+                <tr>
+                    <td>{{ content.tDate }}</td>
+                    <td>{{ content.ID }}</td>
+                    <td>{{ content.TQuantity }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+    <div>
+        <a href="home.html">Home</a>
+        <a href="result.html">Result</a>
+        <a href="insert.html">Add Transactions</a>
+        <a href="buy.html">Buy Stock</a>
+    </div>
+    </body>
+</html>

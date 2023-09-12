@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Stocks</title>
+</head>
+{% load static %}
+<body style="text-align:center">
+        <h1 style="color:deeppink">Buy Stocks</h1>
+        <div style="text-align: right;display:inline-block">
+            <form method="post" action="buy.html">
+                {% csrf_token %}
+                Investor ID:<input type="number" name="iid" required><br>
+                Company:<input type="text" name="csymbol" required><br>
+                Quantity:<input type="number" step="1" min="1" name="quantity" required><br>
+                <input type="submit">
+                </span>
+            </form>
+        </div>
+        <br>
+        {% if error == True %}
+            <p>error:
+                {% if iid_error == True %}
+                    <span> Investor ID not found! </span>
+                {% endif %}
+                {% if match_error == True %}
+                    <span> Buying Record Already Present! </span>
+                {% endif %}
+                {% if csymbol_error == True %}
+                    <span> Company ID not found! </span>
+                {% endif %}
+                {% if funds_error == True %}
+                    <span> insufficient investor funds! </span>
+                {% endif %}
+            </p>
+        {% endif %}
+        {% if purchased %}
+            <p>purchase successful!</p>
+        {% endif %}
+        <br>
+        <h2>Top 10 Purchases:</h2>
+        <table border="1" width="40%" style="margin-right: auto;margin-left: auto">
+            <th>Date</th>
+            <th>Investor ID</th>
+            <th>Company</th>
+            <th>Payed</th>
+            {% for content in sql_res %}
+                <tr>
+                    <td>{{ content.tDate }}</td>
+                    <td>{{ content.ID }}</td>
+                    <td>{{ content.Symbol }}</td>
+                    <td>{{ content.Payed }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+    <div >
+        <a href="home.html">Home</a>
+        <a href="result.html">Result</a>
+        <a href="insert.html">Add Transactions</a>
+        <a href="buy.html">Buy Stock</a>
+    </div>
+</body>
+</html>
